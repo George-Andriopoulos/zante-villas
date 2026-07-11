@@ -1,49 +1,16 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useSyncExternalStore,
-} from "react";
+import { createContext, useContext } from "react";
 
-import { LOCALES, type Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import { usePrefsStore } from "@/lib/store";
 
-const STORAGE_KEY = "zv-locale";
-const listeners = new Set<() => void>();
+const DefaultLocaleCtx = createContext<Locale>("en");
 
-function readStored(): Locale | null {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved && LOCALES.some((l) => l.code === saved)
-      ? (saved as Locale)
-      : null;
-  } catch {
-    return null;
-  }
-}
-
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
-
-function writeStored(locale: Locale) {
-  try {
-    localStorage.setItem(STORAGE_KEY, locale);
-  } catch {}
-  listeners.forEach((l) => l());
-}
-
-const LocaleCtx = createContext<{
-  locale: Locale;
-  setLocale: (l: Locale) => void;
-}>({ locale: "en", setLocale: () => {} });
-
-export function useLocale() {
-  return useContext(LocaleCtx);
-}
-
+// Holds exactly one thing: which locale a villa should show before the guest
+// has picked one themselves. This is config, not state — the actual current
+// locale (and the setter to change it) lives in the Zustand store, global,
+// persisted, reactive.
 export function LocaleProvider({
   defaultLocale,
   children,
@@ -51,19 +18,16 @@ export function LocaleProvider({
   defaultLocale: Locale;
   children: React.ReactNode;
 }) {
-  const locale = useSyncExternalStore(
-    subscribe,
-    () => readStored() ?? defaultLocale,
-    () => defaultLocale
-  );
-
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
-
   return (
-    <LocaleCtx.Provider value={{ locale, setLocale: writeStored }}>
+    <DefaultLocaleCtx.Provider value={defaultLocale}>
       {children}
-    </LocaleCtx.Provider>
+    </DefaultLocaleCtx.Provider>
   );
+}
+
+export function useLocale() {
+  const defaultLocale = useContext(DefaultLocaleCtx);
+  const stored = usePrefsStore((s) => s.locale);
+  const setLocale = usePrefsStore((s) => s.setLocale);
+  return { locale: stored ?? defaultLocale, setLocale };
 }

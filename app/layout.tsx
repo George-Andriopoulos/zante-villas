@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Commissioner, Literata } from "next/font/google";
 
+import { AppInit } from "@/components/app-init";
+
 import "./globals.css";
 
 const sans = Commissioner({
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   description: "Digital guest guides for villas — by PixelZakynthos.",
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem("zv-theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})();`;
+const themeInit = `(function(){try{var raw=localStorage.getItem("zv-prefs");var dark=null;if(raw){var parsed=JSON.parse(raw);dark=parsed&&parsed.state?parsed.state.dark:null;}var wantsDark=dark===true||(dark===null&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(wantsDark){document.documentElement.classList.add("dark")}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -30,6 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${display.variable} font-sans`}>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <AppInit />
         {children}
       </body>
     </html>

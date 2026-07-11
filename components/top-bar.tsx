@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { ArrowLeft, Check, Moon, Share2, Sun } from "lucide-react";
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 
 import { LOCALES, t, ui } from "@/lib/i18n";
+import { usePrefsStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
 import { useLocale } from "./providers";
@@ -12,39 +13,13 @@ import { useLocale } from "./providers";
 const chip =
   "grid size-9 place-items-center rounded-full border border-line/70 bg-paper/70 backdrop-blur transition active:scale-95";
 
-const themeListeners = new Set<() => void>();
-
-function getThemeSnapshot() {
-  return document.documentElement.classList.contains("dark");
-}
-
-function getThemeServerSnapshot() {
-  return false;
-}
-
-function subscribeTheme(listener: () => void) {
-  themeListeners.add(listener);
-  return () => themeListeners.delete(listener);
-}
-
-function setDarkMode(next: boolean) {
-  document.documentElement.classList.toggle("dark", next);
-  try {
-    localStorage.setItem("zv-theme", next ? "dark" : "light");
-  } catch {}
-  themeListeners.forEach((l) => l());
-}
-
 function ThemeToggle() {
-  const dark = useSyncExternalStore(
-    subscribeTheme,
-    getThemeSnapshot,
-    getThemeServerSnapshot
-  );
+  const dark = usePrefsStore((s) => s.dark) ?? false;
+  const setDark = usePrefsStore((s) => s.setDark);
 
   return (
     <button
-      onClick={() => setDarkMode(!dark)}
+      onClick={() => setDark(!dark)}
       aria-label="Toggle dark mode"
       className={chip}
     >
