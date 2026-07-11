@@ -4,13 +4,15 @@ import { useEffect } from "react";
 
 import { usePrefsStore } from "@/lib/store";
 
-// Rehydrates the persisted store on the client once (skipHydration means the
-// server never touches localStorage). The very first paint's dark class is
-// already handled by the blocking inline script in app/layout.tsx — this
-// keeps <html>'s class in sync with the store for every change after that.
 export function AppInit() {
   useEffect(() => {
     usePrefsStore.persist.rehydrate();
+
+    if (usePrefsStore.getState().dark === null) {
+      usePrefsStore.setState({
+        dark: document.documentElement.classList.contains("dark"),
+      });
+    }
   }, []);
 
   const dark = usePrefsStore((s) => s.dark);
