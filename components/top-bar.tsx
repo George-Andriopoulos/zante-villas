@@ -30,7 +30,7 @@ function subscribeTheme(listener: () => void) {
 function setDarkMode(next: boolean) {
   document.documentElement.classList.toggle("dark", next);
   try {
-    localStorage.setItem("xenios-theme", next ? "dark" : "light");
+    localStorage.setItem("zv-theme", next ? "dark" : "light");
   } catch {}
   themeListeners.forEach((l) => l());
 }

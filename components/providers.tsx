@@ -9,7 +9,7 @@ import {
 
 import { LOCALES, type Locale } from "@/lib/i18n";
 
-const STORAGE_KEY = "xenios-locale";
+const STORAGE_KEY = "zv-locale";
 const listeners = new Set<() => void>();
 
 function readStored(): Locale | null {

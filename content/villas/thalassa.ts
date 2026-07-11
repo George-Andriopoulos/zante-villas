@@ -11,10 +11,10 @@ export const thalassa: Villa = {
     el: "Ένα ήσυχο καταφύγιο πάνω από το Ιόνιο, λίγα λεπτά από τις παραλίες της καρέτα.",
   },
   heroImages: [
-    "https://loremflickr.com/1200/1500/villa,pool?lock=101",
-    "https://loremflickr.com/1200/1500/greece,sea,coast?lock=102",
-    "https://loremflickr.com/1200/1500/villa,terrace?lock=103",
-    "https://loremflickr.com/1200/1500/mediterranean,garden?lock=104",
+    "https://loremflickr.com/1200/1500/luxury,pool,villa?lock=201",
+    "https://loremflickr.com/1200/1500/aegean,sea,view?lock=202",
+    "https://loremflickr.com/1200/1500/villa,terrace,sunset?lock=203",
+    "https://loremflickr.com/1200/1500/olive,grove,greece?lock=204",
   ],
   defaultLocale: "en",
   location: {

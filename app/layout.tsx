@@ -15,11 +15,11 @@ const display = Literata({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Xenios", template: "%s · Xenios" },
+  title: { default: "Zante Villas", template: "%s · Zante Villas" },
   description: "Digital guest guides for villas — by PixelZakynthos.",
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem("xenios-theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})();`;
+const themeInit = `(function(){try{var t=localStorage.getItem("zv-theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -27,9 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang='en'
-      suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${display.variable} font-sans`}>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         {children}
