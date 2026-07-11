@@ -4,8 +4,8 @@ import type { IconName } from "@/lib/icons";
 export type InfoRow = {
   label: L10n;
   value: string;
-  copyable?: boolean; // tap-to-copy (wifi passwords, codes)
-  href?: string; // renders as a link (maps, tel:, urls)
+  copyable?: boolean;
+  href?: string;
 };
 
 export type Place = {
@@ -14,7 +14,7 @@ export type Place = {
   description?: L10n;
   image?: string;
   mapUrl?: string;
-  menuUrl?: string; // plug your Zante-menu clients here → cross-sell
+  menuUrl?: string;
   distance?: L10n;
 };
 
@@ -42,13 +42,14 @@ export type Section = {
 
 export type VillaCta =
   | { kind: "whatsapp"; icon: IconName; label: L10n }
+  | { kind: "checkin"; icon: IconName; label: L10n }
   | { kind: "link"; icon: IconName; label: L10n; href: string };
 
 export type Villa = {
   slug: string;
   name: string;
   tagline: L10n;
-  heroImage: string;
+  heroImages: string[];
   defaultLocale: Locale;
   location: { area: L10n; lat: number; lon: number };
   host: {

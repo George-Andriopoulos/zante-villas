@@ -14,50 +14,52 @@ import { WhatsAppIcon } from "./whatsapp";
 function PlaceCard({ place }: { place: Place }) {
   const { locale } = useLocale();
   return (
-    <article className='overflow-hidden rounded-2xl border border-line bg-card'>
+    <article className="border-line bg-card overflow-hidden rounded-2xl border">
       {place.image && (
-        <div className='relative aspect-[16/10]'>
+        <div className="relative aspect-[16/10]">
           <Image
             src={place.image}
             alt={place.name}
             fill
-            sizes='(max-width: 512px) 100vw, 512px'
-            className='object-cover'
+            sizes="(max-width: 512px) 100vw, 512px"
+            className="object-cover"
           />
         </div>
       )}
-      <div className='p-4'>
-        <div className='flex items-baseline justify-between gap-2'>
-          <h3 className='text-[17px] font-medium'>{place.name}</h3>
+      <div className="p-4">
+        <div className="flex items-baseline justify-between gap-2">
+          <h3 className="text-[17px] font-medium">{place.name}</h3>
           {place.distance && (
-            <span className='shrink-0 text-xs text-muted'>
+            <span className="text-muted shrink-0 text-xs">
               {t(place.distance, locale)}
             </span>
           )}
         </div>
-        <p className='mt-0.5 text-sm text-accent'>{t(place.tagline, locale)}</p>
+        <p className="text-accent mt-0.5 text-sm">{t(place.tagline, locale)}</p>
         {place.description && (
-          <p className='mt-2 text-sm leading-relaxed text-muted'>
+          <p className="text-muted mt-2 text-sm leading-relaxed">
             {t(place.description, locale)}
           </p>
         )}
         {(place.mapUrl || place.menuUrl) && (
-          <div className='mt-3 flex gap-2'>
+          <div className="mt-3 flex gap-2">
             {place.mapUrl && (
               <a
                 href={place.mapUrl}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-medium transition active:scale-95'>
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-line inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition active:scale-95"
+              >
                 <MapPin size={13} /> {t(ui.map, locale)}
               </a>
             )}
             {place.menuUrl && (
               <a
                 href={place.menuUrl}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex items-center gap-1.5 rounded-full border border-line bg-accent-soft px-3 py-1.5 text-xs font-medium text-accent transition active:scale-95'>
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-line bg-accent-soft text-accent inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition active:scale-95"
+              >
                 <UtensilsCrossed size={13} /> {t(ui.menu, locale)}
               </a>
             )}
@@ -82,21 +84,23 @@ function ContactRow({ c }: { c: Contact }) {
   return (
     <a
       href={href}
-      className='flex items-center gap-3 rounded-2xl border border-line bg-card px-4 py-3 transition active:scale-[.99]'>
+      className="border-line bg-card flex items-center gap-3 rounded-2xl border px-4 py-3 transition active:scale-[.99]"
+    >
       <span
         className={cn(
           "grid size-9 shrink-0 place-items-center rounded-full",
           c.kind === "whatsapp"
             ? "bg-wa/15 text-wa"
-            : "bg-accent-soft text-accent",
-        )}>
-        <Icon className='size-4' />
+            : "bg-accent-soft text-accent"
+        )}
+      >
+        <Icon className="size-4" />
       </span>
-      <span className='min-w-0'>
-        <span className='block truncate text-sm font-medium'>
+      <span className="min-w-0">
+        <span className="block truncate text-sm font-medium">
           {t(c.label, locale)}
         </span>
-        <span className='block text-xs text-muted'>{c.value}</span>
+        <span className="text-muted block text-xs">{c.value}</span>
       </span>
     </a>
   );
@@ -106,18 +110,18 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
   const { locale } = useLocale();
 
   return (
-    <div className='space-y-5'>
+    <div className="space-y-5">
       {blocks.map((b, i) => {
         switch (b.type) {
           case "text":
             return (
               <div key={i}>
                 {b.title && (
-                  <h3 className='mb-1 text-[15px] font-medium'>
+                  <h3 className="mb-1 text-[15px] font-medium">
                     {t(b.title, locale)}
                   </h3>
                 )}
-                <p className='text-[15px] leading-relaxed text-muted'>
+                <p className="text-muted text-[15px] leading-relaxed">
                   {t(b.body, locale)}
                 </p>
               </div>
@@ -128,11 +132,12 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
               <div
                 key={i}
                 className={cn(
-                  "rounded-r-2xl border-l-2 py-3 pl-4 pr-3 text-sm leading-relaxed",
+                  "rounded-r-2xl border-l-2 py-3 pr-3 pl-4 text-sm leading-relaxed",
                   b.tone === "warning"
                     ? "border-amber-600/70 bg-amber-500/10"
-                    : "border-accent bg-accent-soft",
-                )}>
+                    : "border-accent bg-accent-soft"
+                )}
+              >
                 {t(b.body, locale)}
               </div>
             );
@@ -141,28 +146,31 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             return (
               <div
                 key={i}
-                className='rounded-2xl border border-line bg-card px-4'>
+                className="border-line bg-card rounded-2xl border px-4"
+              >
                 {b.title && (
-                  <p className='border-b border-line pt-3 pb-2 text-[15px] font-medium'>
+                  <p className="border-line border-b pt-3 pb-2 text-[15px] font-medium">
                     {t(b.title, locale)}
                   </p>
                 )}
                 {b.rows.map((r, ri) => (
                   <div
                     key={ri}
-                    className='flex items-center justify-between gap-3 border-b border-line py-3 last:border-0'>
-                    <span className='text-sm text-muted'>
+                    className="border-line flex items-center justify-between gap-3 border-b py-3 last:border-0"
+                  >
+                    <span className="text-muted text-sm">
                       {t(r.label, locale)}
                     </span>
-                    <span className='flex items-center gap-2 text-right text-sm font-medium'>
+                    <span className="flex items-center gap-2 text-right text-sm font-medium">
                       {r.href ? (
                         <a
                           href={r.href}
                           target={
                             r.href.startsWith("http") ? "_blank" : undefined
                           }
-                          rel='noopener noreferrer'
-                          className='text-accent underline underline-offset-2'>
+                          rel="noopener noreferrer"
+                          className="text-accent underline underline-offset-2"
+                        >
                           {r.value}
                         </a>
                       ) : (
@@ -179,19 +187,17 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             return (
               <div key={i}>
                 {b.title && (
-                  <h3 className='mb-2 text-[15px] font-medium'>
+                  <h3 className="mb-2 text-[15px] font-medium">
                     {t(b.title, locale)}
                   </h3>
                 )}
-                <ol className='space-y-2.5'>
+                <ol className="space-y-2.5">
                   {b.items.map((s, si) => (
-                    <li
-                      key={si}
-                      className='flex gap-3'>
-                      <span className='mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-accent-soft text-xs font-medium text-accent'>
+                    <li key={si} className="flex gap-3">
+                      <span className="bg-accent-soft text-accent mt-0.5 grid size-6 shrink-0 place-items-center rounded-full text-xs font-medium">
                         {si + 1}
                       </span>
-                      <span className='text-[15px] leading-relaxed text-muted'>
+                      <span className="text-muted text-[15px] leading-relaxed">
                         {t(s, locale)}
                       </span>
                     </li>
@@ -202,28 +208,18 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
 
           case "places":
             return (
-              <div
-                key={i}
-                className='space-y-4'>
+              <div key={i} className="grid gap-4 sm:grid-cols-2">
                 {b.items.map((p) => (
-                  <PlaceCard
-                    key={p.name}
-                    place={p}
-                  />
+                  <PlaceCard key={p.name} place={p} />
                 ))}
               </div>
             );
 
           case "contacts":
             return (
-              <div
-                key={i}
-                className='space-y-2.5'>
+              <div key={i} className="space-y-2.5">
                 {b.items.map((c, ci) => (
-                  <ContactRow
-                    key={ci}
-                    c={c}
-                  />
+                  <ContactRow key={ci} c={c} />
                 ))}
               </div>
             );

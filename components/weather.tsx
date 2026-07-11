@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { t, ui, type L10n, type Locale } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 function wmo(code: number): { I: LucideIcon; label: L10n } {
   if (code === 0) return { I: Sun, label: { en: "Clear", el: "Αίθριος" } };
@@ -46,11 +47,13 @@ export function TodayCard({
   lon,
   area,
   locale,
+  className,
 }: {
   lat: number;
   lon: number;
   area: L10n;
   locale: Locale;
+  className?: string;
 }) {
   const [data, setData] = useState<Data | null | "error">(null);
 
@@ -60,14 +63,14 @@ export function TodayCard({
     async function load() {
       try {
         const res = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunset&timezone=auto&forecast_days=7`,
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunset&timezone=auto&forecast_days=7`
         );
         const j = await res.json();
 
         let sea: number | null = null;
         try {
           const m = await fetch(
-            `https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=sea_surface_temperature&timezone=auto`,
+            `https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=sea_surface_temperature&timezone=auto`
           );
           const mj = await m.json();
           sea = mj?.current?.sea_surface_temperature ?? null;
@@ -101,7 +104,12 @@ export function TodayCard({
 
   if (!data) {
     return (
-      <div className='mx-4 mt-4 h-44 animate-pulse rounded-2xl border border-line bg-card' />
+      <div
+        className={cn(
+          "border-line bg-card mx-4 mt-4 h-44 animate-pulse rounded-2xl border lg:mx-0 lg:mt-0",
+          className
+        )}
+      />
     );
   }
 
@@ -112,52 +120,51 @@ export function TodayCard({
     });
 
   return (
-    <div className='mx-4 mt-4 rounded-2xl border border-line bg-card p-4'>
-      <p className='text-[11px] tracking-[0.16em] text-muted'>
+    <div
+      className={cn(
+        "border-line bg-card mx-4 mt-4 rounded-2xl border p-4 lg:mx-0 lg:mt-0",
+        className
+      )}
+    >
+      <p className="text-muted text-[11px] tracking-[0.16em]">
         {(t(ui.today, locale) + " · " + t(area, locale)).toLocaleUpperCase(
-          locale === "el" ? "el-GR" : "en-GB",
+          locale === "el" ? "el-GR" : "en-GB"
         )}
       </p>
 
-      <div className='mt-2 flex items-center justify-between'>
-        <div className='flex items-center gap-3'>
-          <now.I
-            size={34}
-            strokeWidth={1.25}
-            className='text-accent'
-          />
+      <div className="mt-2 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <now.I size={34} strokeWidth={1.25} className="text-accent" />
           <div>
-            <p className='font-display text-3xl leading-none'>{data.temp}°</p>
-            <p className='mt-1 text-sm text-muted'>{t(now.label, locale)}</p>
+            <p className="font-display text-3xl leading-none">{data.temp}°</p>
+            <p className="text-muted mt-1 text-sm">{t(now.label, locale)}</p>
           </div>
         </div>
-        <div className='space-y-1.5 text-sm text-muted'>
+        <div className="text-muted space-y-1.5 text-sm">
           {data.sea !== null && (
-            <p className='flex items-center justify-end gap-1.5'>
+            <p className="flex items-center justify-end gap-1.5">
               <Waves size={15} /> {t(ui.sea, locale)} {data.sea}°
             </p>
           )}
-          <p className='flex items-center justify-end gap-1.5'>
+          <p className="flex items-center justify-end gap-1.5">
             <Sunset size={15} /> {t(ui.sunset, locale)} {data.sunset}
           </p>
         </div>
       </div>
 
-      <div className='mt-4 grid grid-cols-7 gap-1 border-t border-line pt-3 text-center'>
+      <div className="border-line mt-4 grid grid-cols-7 gap-1 border-t pt-3 text-center">
         {data.days.map((d) => {
           const w = wmo(d.code);
           return (
-            <div
-              key={d.date}
-              className='space-y-1'>
-              <p className='text-[11px] text-muted'>{dayName(d.date)}</p>
+            <div key={d.date} className="space-y-1">
+              <p className="text-muted text-[11px]">{dayName(d.date)}</p>
               <w.I
                 size={16}
                 strokeWidth={1.5}
-                className='mx-auto text-accent'
+                className="text-accent mx-auto"
               />
-              <p className='text-xs font-medium'>{d.max}°</p>
-              <p className='text-[11px] text-muted'>{d.min}°</p>
+              <p className="text-xs font-medium">{d.max}°</p>
+              <p className="text-muted text-[11px]">{d.min}°</p>
             </div>
           );
         })}

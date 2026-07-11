@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Moon, Sun } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { ArrowLeft, Check, Moon, Share2, Sun } from "lucide-react";
+import { useState, useSyncExternalStore } from "react";
 
 import { LOCALES, t, ui } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -53,6 +53,31 @@ function ThemeToggle() {
   );
 }
 
+function ShareButton() {
+  const [copied, setCopied] = useState(false);
+
+  async function share() {
+    const data = { title: document.title, url: window.location.href };
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+      } catch {}
+    } else {
+      try {
+        await navigator.clipboard.writeText(data.url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1600);
+      } catch {}
+    }
+  }
+
+  return (
+    <button onClick={share} aria-label="Share" className={chip}>
+      {copied ? <Check size={16} /> : <Share2 size={16} />}
+    </button>
+  );
+}
+
 function LocaleSwitcher() {
   const { locale, setLocale } = useLocale();
   return (
@@ -98,6 +123,7 @@ export function TopBar({
         <span />
       )}
       <div className="flex items-center gap-2">
+        <ShareButton />
         <LocaleSwitcher />
         <ThemeToggle />
       </div>

@@ -28,7 +28,7 @@ export default async function VillaLayout({ params, children }: Props) {
 
   return (
     <LocaleProvider defaultLocale={v.defaultLocale}>
-      <div className='mx-auto min-h-dvh max-w-lg pb-24'>
+      <div className="mx-auto min-h-dvh max-w-lg pb-24 lg:max-w-5xl">
         {children}
         <Footer villa={v} />
       </div>

@@ -19,19 +19,19 @@ export function SectionView({
   return (
     <>
       <TopBar backHref={`/${villa.slug}`} />
-      <div className='px-4 pt-6'>
-        <p className='text-[11px] tracking-[0.2em] text-muted'>
+      <div className="mx-auto w-full px-4 pt-6 lg:max-w-3xl lg:px-6">
+        <p className="text-muted text-[11px] tracking-[0.2em]">
           {upper(`${villa.name} · ${t(ui.guide, locale)}`, locale)}
         </p>
-        <h1 className='mt-1 font-display text-3xl italic leading-tight'>
+        <h1 className="font-display mt-1 text-3xl leading-tight italic">
           {t(section.title, locale)}
         </h1>
         {section.intro && (
-          <p className='mt-2 text-[15px] leading-relaxed text-muted'>
+          <p className="text-muted mt-2 text-[15px] leading-relaxed">
             {t(section.intro, locale)}
           </p>
         )}
-        <div className='mt-6'>
+        <div className="mt-6">
           <Blocks blocks={section.blocks} />
         </div>
       </div>

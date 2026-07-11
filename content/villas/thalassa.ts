@@ -1,5 +1,8 @@
 import type { Villa } from "@/content/types";
 
+// Demo villa — Vasilikos, Zakynthos.
+// Images are topic-tagged placeholders (LoremFlickr). Replace with real photos
+// in /public/villas/thalassa/ (e.g. "/villas/thalassa/hero-1.jpg") when ready.
 export const thalassa: Villa = {
   slug: "thalassa",
   name: "Villa Thalassa",
@@ -7,7 +10,12 @@ export const thalassa: Villa = {
     en: "A quiet retreat above the Ionian, minutes from turtle beaches.",
     el: "Ένα ήσυχο καταφύγιο πάνω από το Ιόνιο, λίγα λεπτά από τις παραλίες της καρέτα.",
   },
-  heroImage: "https://picsum.photos/seed/thalassa-hero/1200/1500",
+  heroImages: [
+    "https://loremflickr.com/1200/1500/villa,pool?lock=101",
+    "https://loremflickr.com/1200/1500/greece,sea,coast?lock=102",
+    "https://loremflickr.com/1200/1500/villa,terrace?lock=103",
+    "https://loremflickr.com/1200/1500/mediterranean,garden?lock=104",
+  ],
   defaultLocale: "en",
   location: {
     area: { en: "Vasilikos · Zakynthos", el: "Βασιλικός · Ζάκυνθος" },
@@ -15,11 +23,11 @@ export const thalassa: Villa = {
     lon: 20.956,
   },
   host: {
-    name: "Dimitris",
-    photo: "https://picsum.photos/seed/host-d/200/200",
+    name: "Michalis",
+    photo: "https://loremflickr.com/200/200/portrait,man?lock=105",
     note: {
-      en: "Welcome to Villa Thalassa! In this guide you will find everything for a comfortable stay — from the Wi-Fi password to the beaches and tavernas we love ourselves. Message me on WhatsApp any time, for anything at all. Kalos irthate!",
-      el: "Καλώς ήρθατε στη Villa Thalassa! Σε αυτόν τον οδηγό θα βρείτε ό,τι χρειάζεστε για μια άνετη διαμονή — από τον κωδικό Wi-Fi μέχρι τις παραλίες και τις ταβέρνες που αγαπάμε κι εμείς. Στείλτε μου μήνυμα στο WhatsApp οποιαδήποτε στιγμή, για οτιδήποτε.",
+      en: "Welcome to Villa Thalassa! In this guide you will find everything for a comfortable stay — from the Wi-Fi password to the beaches and tavernas we love ourselves. Message me on WhatsApp any time, for anything at all. Kalos irthate! — Michalis",
+      el: "Καλώς ήρθατε στη Villa Thalassa! Σε αυτόν τον οδηγό θα βρείτε ό,τι χρειάζεστε για μια άνετη διαμονή — από τον κωδικό Wi-Fi μέχρι τις παραλίες και τις ταβέρνες που αγαπάμε κι εμείς. Στείλτε μου μήνυμα στο WhatsApp οποιαδήποτε στιγμή, για οτιδήποτε. — Μιχάλης",
     },
     phone: "+306977616178",
     whatsapp: "+306977616178",
@@ -36,9 +44,8 @@ export const thalassa: Villa = {
       label: { en: "WhatsApp host", el: "WhatsApp" },
     },
     {
-      kind: "link",
+      kind: "checkin",
       icon: "checkin",
-      href: "https://forms.gle/REPLACE_ME", // TODO: real check-in Google Form
       label: { en: "Check-in form", el: "Φόρμα check-in" },
     },
   ],
@@ -214,7 +221,7 @@ export const thalassa: Villa = {
                 el: "Η παραλία της γειτονιάς — ήσυχη, με οικογενειακή ταβέρνα πάνω στο κύμα.",
               },
               distance: { en: "4 min drive", el: "4′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/portoroma/800/500",
+              image: "https://loremflickr.com/800/500/zakynthos,beach?lock=11",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Porto+Roma+Beach+Zakynthos",
             },
@@ -226,7 +233,8 @@ export const thalassa: Villa = {
                 el: "Οργανωμένη παραλία με jet ski, SUP και καταδυτικό κέντρο.",
               },
               distance: { en: "6 min drive", el: "6′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/stnicholas/800/500",
+              image:
+                "https://loremflickr.com/800/500/greece,beach,summer?lock=12",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Agios+Nikolaos+Beach+Vasilikos+Zakynthos",
             },
@@ -241,7 +249,8 @@ export const thalassa: Villa = {
                 el: "Προστατευόμενη παραλία του Θαλάσσιου Πάρκου — πλατιά χρυσή άμμος, ρηχά νερά, ιδανική το πρωί. Κλείνει στη δύση την περίοδο ωοτοκίας.",
               },
               distance: { en: "7 min drive", el: "7′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/gerakas/800/500",
+              image:
+                "https://loremflickr.com/800/500/sandy,beach,turquoise?lock=13",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Gerakas+Beach+Zakynthos",
             },
@@ -252,7 +261,8 @@ export const thalassa: Villa = {
                 el: "Σκούρα άμμος & βραχονησίδες",
               },
               distance: { en: "7 min drive", el: "7′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/portozorro/800/500",
+              image:
+                "https://loremflickr.com/800/500/rocky,beach,greece?lock=14",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Porto+Zorro+Beach+Zakynthos",
             },
@@ -267,7 +277,7 @@ export const thalassa: Villa = {
                 el: "Η μεγαλύτερη παραλία του νησιού — beach bars, μουσική, ξαπλώστρες παντού.",
               },
               distance: { en: "8 min drive", el: "8′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/banana/800/500",
+              image: "https://loremflickr.com/800/500/beach,bar,summer?lock=15",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Banana+Beach+Zakynthos",
             },
@@ -279,7 +289,7 @@ export const thalassa: Villa = {
                 el: "Ο τελευταίος δρόμος είναι χωματόδρομος — αξίζει. Δύο ταβέρνες, περιοχή της καρέτα.",
               },
               distance: { en: "12 min drive", el: "12′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/dafni/800/500",
+              image: "https://loremflickr.com/800/500/wild,beach,cove?lock=16",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Dafni+Beach+Zakynthos",
             },
@@ -293,7 +303,8 @@ export const thalassa: Villa = {
                 en: "Uninhabited islet in Laganas Bay. Boats leave from Laganas and Keri — no facilities, pure postcard.",
                 el: "Ακατοίκητη νησίδα στον κόλπο του Λαγανά. Σκάφη από Λαγανά και Κερί — χωρίς υποδομές, σκέτη καρτ ποστάλ.",
               },
-              image: "https://picsum.photos/seed/marathonisi/800/500",
+              image:
+                "https://loremflickr.com/800/500/island,greece,boat?lock=17",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Marathonisi+Zakynthos",
             },
@@ -313,8 +324,8 @@ export const thalassa: Villa = {
         {
           type: "places",
           items: [
-            // TIP: for restaurants that use your Zante-menu, add menuUrl:
-            // "https://zantemenu.online/<shop>" and a Menu button appears on the card.
+            // TIP: for restaurants on your Zante-menu, add
+            // menuUrl: "https://zantemenu.online/<shop>" and a Menu button appears.
             {
               name: "Lithies Taverna",
               tagline: {
@@ -326,7 +337,7 @@ export const thalassa: Villa = {
                 el: "Όλα από το οικογενειακό κτήμα — ζητήστε τα πιάτα ημέρας και το ολόκληρο ψητό λαβράκι.",
               },
               distance: { en: "5 min drive", el: "5′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/lithies/800/500",
+              image: "https://loremflickr.com/800/500/greek,taverna?lock=21",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Lithies+Taverna+Vasilikos+Zakynthos",
             },
@@ -341,7 +352,8 @@ export const thalassa: Villa = {
                 el: "Ζωντανή κιθάρα τα βράδια, κολοκυθοκεφτέδες που δεν ξεχνιούνται, καρπούζι κέρασμα.",
               },
               distance: { en: "6 min drive", el: "6′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/kostasbrother/800/500",
+              image:
+                "https://loremflickr.com/800/500/taverna,garden,food?lock=22",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Kostas+Brother+Taverna+Vasilikos",
             },
@@ -352,7 +364,8 @@ export const thalassa: Villa = {
                 el: "Θαλασσινά πάνω από το Πόρτο Ρόμα",
               },
               distance: { en: "4 min drive", el: "4′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/nikos/800/500",
+              image:
+                "https://loremflickr.com/800/500/seafood,restaurant,sea?lock=23",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Nikos+Taverna+Porto+Roma+Zakynthos",
             },
@@ -367,7 +380,7 @@ export const thalassa: Villa = {
                 el: "Τίμια ελληνική κουζίνα κοντά στη διασταύρωση του σχολείου — μεγάλες μερίδες, ζεστή υποδοχή.",
               },
               distance: { en: "3 min drive", el: "3′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/mais/800/500",
+              image: "https://loremflickr.com/800/500/greek,food,plate?lock=24",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Mais+Restaurant+Vasilikos+Zakynthos",
             },
@@ -378,7 +391,8 @@ export const thalassa: Villa = {
                 el: "Πρωινό & η διάσημη μηλόπιτα",
               },
               distance: { en: "3 min drive", el: "3′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/coffeehouse/800/500",
+              image:
+                "https://loremflickr.com/800/500/coffee,breakfast,cafe?lock=25",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Coffee+House+Vasilikos+Zakynthos",
             },
@@ -389,7 +403,8 @@ export const thalassa: Villa = {
                 el: "Ποτά στη δύση, στην Banana",
               },
               distance: { en: "8 min drive", el: "8′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/casaplaya/800/500",
+              image:
+                "https://loremflickr.com/800/500/cocktail,beach,sunset?lock=26",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Casa+Playa+Banana+Beach+Zakynthos",
             },
@@ -416,7 +431,8 @@ export const thalassa: Villa = {
                 el: "Η πιο φωτογραφημένη θέα της Ελλάδας. Η ίδια η παραλία παραμένει κλειστή για λόγους ασφαλείας τα τελευταία χρόνια — ρωτήστε μας πριν πάτε.",
               },
               distance: { en: "55 min drive", el: "55′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/navagio/800/500",
+              image:
+                "https://loremflickr.com/800/500/navagio,zakynthos?lock=31",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Navagio+Viewpoint+Zakynthos",
             },
@@ -431,7 +447,7 @@ export const thalassa: Villa = {
                 el: "Με βαρκάκι από τον Άγιο Νικόλαο Βολιμών — το πρωινό φως είναι το καλύτερο.",
               },
               distance: { en: "60 min drive", el: "60′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/bluecaves/800/500",
+              image: "https://loremflickr.com/800/500/sea,cave,blue?lock=32",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Blue+Caves+Zakynthos",
             },
@@ -442,7 +458,8 @@ export const thalassa: Villa = {
                 el: "Ο φάρος και τα βράχια στη δύση",
               },
               distance: { en: "40 min drive", el: "40′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/keri/800/500",
+              image:
+                "https://loremflickr.com/800/500/cliffs,sunset,sea?lock=33",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Keri+Lighthouse+Zakynthos",
             },
@@ -457,7 +474,8 @@ export const thalassa: Villa = {
                 el: "Ενετικό κάστρο και η καλύτερη βραδινή θέα στα φώτα της πόλης.",
               },
               distance: { en: "25 min drive", el: "25′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/bochali/800/500",
+              image:
+                "https://loremflickr.com/800/500/castle,view,night?lock=34",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Bochali+Zakynthos",
             },
@@ -468,7 +486,8 @@ export const thalassa: Villa = {
                 el: "Βραδινή βόλτα & Άγιος Διονύσιος",
               },
               distance: { en: "20 min drive", el: "20′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/zantetown/800/500",
+              image:
+                "https://loremflickr.com/800/500/greek,town,harbor?lock=35",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Solomos+Square+Zakynthos",
             },
@@ -479,7 +498,7 @@ export const thalassa: Villa = {
                 el: "Γευσιγνωσία λαδιού στη Λιθακιά",
               },
               distance: { en: "30 min drive", el: "30′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/aristeon/800/500",
+              image: "https://loremflickr.com/800/500/olive,oil,greece?lock=36",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Aristeon+Olive+Press+Lithakia+Zakynthos",
             },
@@ -506,7 +525,7 @@ export const thalassa: Villa = {
                 el: "Σκάφη με γυάλινο πάτο φεύγουν από Λαγανά και Κερί όλο το πρωί. Πηγαίνετε νωρίς για ήρεμη θάλασσα.",
               },
               distance: { en: "20 min drive", el: "20′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/turtles/800/500",
+              image: "https://loremflickr.com/800/500/sea,turtle?lock=41",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=Laganas+port+Zakynthos",
             },
@@ -517,7 +536,7 @@ export const thalassa: Villa = {
                 el: "Καταδυτικό κέντρο στον Άγιο Νικόλαο",
               },
               distance: { en: "6 min drive", el: "6′ με αυτοκίνητο" },
-              image: "https://picsum.photos/seed/diving/800/500",
+              image: "https://loremflickr.com/800/500/scuba,diving?lock=42",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=diving+center+Vasilikos+Zakynthos",
             },
@@ -527,7 +546,7 @@ export const thalassa: Villa = {
                 en: "Paddle the marine park coast",
                 el: "Κωπηλασία στις ακτές του πάρκου",
               },
-              image: "https://picsum.photos/seed/kayak/800/500",
+              image: "https://loremflickr.com/800/500/kayak,sea?lock=43",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=sea+kayak+Zakynthos",
             },
@@ -537,7 +556,8 @@ export const thalassa: Villa = {
                 en: "Trails through the olive groves",
                 el: "Μονοπάτια μέσα στους ελαιώνες",
               },
-              image: "https://picsum.photos/seed/horses/800/500",
+              image:
+                "https://loremflickr.com/800/500/horse,riding,trail?lock=44",
               mapUrl:
                 "https://www.google.com/maps/search/?api=1&query=horse+riding+Vasilikos+Zakynthos",
             },
@@ -641,8 +661,8 @@ export const thalassa: Villa = {
           items: [
             {
               label: {
-                en: "Your host — Dimitris",
-                el: "Οικοδεσπότης — Δημήτρης",
+                en: "Your host — Michalis",
+                el: "Οικοδεσπότης — Μιχάλης",
               },
               value: "+306977616178",
               kind: "whatsapp",
