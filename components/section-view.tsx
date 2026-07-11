@@ -32,7 +32,11 @@ export function SectionView({
           </p>
         )}
         <div className="mt-6">
-          <Blocks blocks={section.blocks} />
+          <Blocks
+            blocks={section.blocks}
+            villaSlug={villa.slug}
+            sectionSlug={section.slug}
+          />
         </div>
       </div>
     </>

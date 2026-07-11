@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#E8E2D4" />
+
+  <path d="M 100 320 
+           L 100 180 
+           A 100 100 0 0 1 300 180 
+           L 300 320" 
+        fill="none" stroke="#33523F" stroke-width="8" stroke-linecap="round" />
+
+  <circle cx="200" cy="120" r="12" fill="#33523F" />
+  <path d="M 192 128 L 208 128 L 214 156 L 186 156 Z" fill="#33523F" />
+
+  <g transform="translate(140, 180)">
+    <rect x="0" y="0" width="28" height="28" fill="none" stroke="#33523F" stroke-width="4"/>
+    <rect x="8" y="8" width="12" height="12" fill="#33523F"/>
+    
+    <rect x="92" y="0" width="28" height="28" fill="none" stroke="#33523F" stroke-width="4"/>
+    <rect x="100" y="8" width="12" height="12" fill="#33523F"/>
+    
+    <rect x="0" y="92" width="28" height="28" fill="none" stroke="#33523F" stroke-width="4"/>
+    <rect x="8" y="100" width="12" height="12" fill="#33523F"/>
+
+    <path d="M 36 0 h 12 v 12 h -12 z M 56 0 h 20 v 12 h -20 z M 36 20 h 28 v 12 h -28 z M 72 20 h 12 v 12 h -12 z M 0 36 h 12 v 12 h -12 z M 20 36 h 20 v 20 h -20 z M 48 40 h 12 v 28 h -12 z M 68 36 h 20 v 12 h -20 z M 96 36 h 24 v 12 h -24 z M 0 56 h 16 v 12 h -16 z M 68 56 h 12 v 20 h -12 z M 88 56 h 12 v 12 h -12 z M 108 56 h 12 v 28 h -12 z M 0 72 h 28 v 12 h -28 z M 36 76 h 12 v 12 h -12 z M 56 84 h 24 v 12 h -24 z M 88 76 h 12 v 12 h -12 z M 36 96 h 20 v 12 h -20 z M 64 104 h 12 v 16 h -12 z M 84 100 h 16 v 12 h -16 z M 108 100 h 12 v 12 h -12 z M 36 112 h 12 v 8 h -12 z M 88 116 h 20 v 4 h -20 z" fill="#33523F" />
+  </g>
+</svg>

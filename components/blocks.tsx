@@ -1,7 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { Mail, MapPin, Phone, UtensilsCrossed } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Mail,
+  MapPin,
+  Phone,
+  Sparkles,
+  UtensilsCrossed,
+} from "lucide-react";
 
 import type { Block, Contact, Place } from "@/content/types";
 import { t, ui } from "@/lib/i18n";
@@ -11,24 +19,35 @@ import { CopyButton } from "./copy-button";
 import { useLocale } from "./providers";
 import { WhatsAppIcon } from "./whatsapp";
 
-function PlaceCard({ place }: { place: Place }) {
+function PlaceCard({ place, href }: { place: Place; href?: string }) {
   const { locale } = useLocale();
-  return (
-    <article className="border-line bg-card overflow-hidden rounded-2xl border">
-      {place.image && (
-        <div className="relative aspect-[16/10]">
-          <Image
-            src={place.image}
-            alt={place.name}
-            fill
-            sizes="(max-width: 512px) 100vw, 512px"
-            className="object-cover"
-          />
-        </div>
+
+  const imageBlock = place.image && (
+    <div className="relative aspect-[16/10]">
+      <Image
+        src={place.image}
+        alt={place.name}
+        fill
+        sizes="(max-width: 512px) 100vw, 512px"
+        className="object-cover"
+        draggable={false}
+      />
+      {place.sponsored && (
+        <span className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
+          <Sparkles size={11} /> {t(ui.partner, locale)}
+        </span>
       )}
+    </div>
+  );
+
+  return (
+    <article className="border-line bg-card hover:border-accent/50 overflow-hidden rounded-2xl border transition">
+      {href && imageBlock ? <Link href={href}>{imageBlock}</Link> : imageBlock}
       <div className="p-4">
         <div className="flex items-baseline justify-between gap-2">
-          <h3 className="text-[17px] font-medium">{place.name}</h3>
+          <h3 className="text-[17px] font-medium">
+            {href ? <Link href={href}>{place.name}</Link> : place.name}
+          </h3>
           {place.distance && (
             <span className="text-muted shrink-0 text-xs">
               {t(place.distance, locale)}
@@ -41,8 +60,16 @@ function PlaceCard({ place }: { place: Place }) {
             {t(place.description, locale)}
           </p>
         )}
-        {(place.mapUrl || place.menuUrl) && (
-          <div className="mt-3 flex gap-2">
+        {(place.mapUrl || place.menuUrl || href) && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {href && (
+              <Link
+                href={href}
+                className="bg-accent text-paper inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition active:scale-95"
+              >
+                {t(ui.readMore, locale)} <ArrowRight size={13} />
+              </Link>
+            )}
             {place.mapUrl && (
               <a
                 href={place.mapUrl}
@@ -106,7 +133,15 @@ function ContactRow({ c }: { c: Contact }) {
   );
 }
 
-export function Blocks({ blocks }: { blocks: Block[] }) {
+export function Blocks({
+  blocks,
+  villaSlug,
+  sectionSlug,
+}: {
+  blocks: Block[];
+  villaSlug: string;
+  sectionSlug: string;
+}) {
   const { locale } = useLocale();
 
   return (
@@ -210,7 +245,15 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             return (
               <div key={i} className="grid gap-4 sm:grid-cols-2">
                 {b.items.map((p) => (
-                  <PlaceCard key={p.name} place={p} />
+                  <PlaceCard
+                    key={p.name}
+                    place={p}
+                    href={
+                      p.slug && p.details
+                        ? `/${villaSlug}/${sectionSlug}/${p.slug}`
+                        : undefined
+                    }
+                  />
                 ))}
               </div>
             );

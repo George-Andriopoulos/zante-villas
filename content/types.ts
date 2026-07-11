@@ -16,6 +16,16 @@ export type Place = {
   mapUrl?: string;
   menuUrl?: string;
   distance?: L10n;
+  slug?: string;
+  sponsored?: boolean;
+  details?: {
+    body: L10n;
+    gallery?: string[];
+    hours?: L10n;
+    phone?: string;
+    website?: string;
+    perk?: L10n;
+  };
 };
 
 export type Contact = {

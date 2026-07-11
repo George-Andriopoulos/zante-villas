@@ -1,4 +1,5 @@
 export type Locale = "en" | "el";
+// Add more later: extend this union + LOCALES + translate content. Nothing else changes.
 
 export const LOCALES: { code: Locale; label: string }[] = [
   { code: "en", label: "EN" },
@@ -25,9 +26,14 @@ export const ui = {
   sunset: { en: "Sunset", el: "Δύση" },
   map: { en: "Map", el: "Χάρτης" },
   menu: { en: "Menu", el: "Μενού" },
+  hours: { en: "Hours", el: "Ωράριο" },
+  website: { en: "Website", el: "Ιστότοπος" },
+  callLabel: { en: "Call", el: "Κλήση" },
+  partner: { en: "Partner", el: "Συνεργάτης" },
+  perkTitle: { en: "Guest perk", el: "Προνόμιο επισκέπτη" },
   waGreeting: {
     en: "Hello! I am a guest at",
     el: "Γεια σας! Είμαι επισκέπτης στη",
   },
-  guideBy: { en: "Guide by", el: "Οδηγός από" },
+  createdBy: { en: "Created by", el: "Δημιουργήθηκε από" },
 } satisfies Record<string, L10n>;

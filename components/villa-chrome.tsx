@@ -106,7 +106,7 @@ export function Footer({ villa }: { villa: Villa }) {
       )}
       <p className="text-muted mt-1 text-sm">{villa.host.phone}</p>
       <p className="text-muted mt-6 text-xs">
-        {t(ui.guideBy, locale)}{" "}
+        {t(ui.createdBy, locale)}{" "}
         <a
           href="https://pixelzakynthos.com" /* TODO: your real link */
           className="text-accent font-medium"
@@ -116,7 +116,6 @@ export function Footer({ villa }: { villa: Villa }) {
           PixelZakynthos
         </a>
       </p>
-      <p className="text-muted/70 mt-1 text-[11px]">v0.2</p>
     </footer>
   );
 }
