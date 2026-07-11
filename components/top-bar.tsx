@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft, Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { LOCALES, t, ui } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -12,27 +12,42 @@ import { useLocale } from "./providers";
 const chip =
   "grid size-9 place-items-center rounded-full border border-line/70 bg-paper/70 backdrop-blur transition active:scale-95";
 
+const themeListeners = new Set<() => void>();
+
+function getThemeSnapshot() {
+  return document.documentElement.classList.contains("dark");
+}
+
+function getThemeServerSnapshot() {
+  return false;
+}
+
+function subscribeTheme(listener: () => void) {
+  themeListeners.add(listener);
+  return () => themeListeners.delete(listener);
+}
+
+function setDarkMode(next: boolean) {
+  document.documentElement.classList.toggle("dark", next);
+  try {
+    localStorage.setItem("xenios-theme", next ? "dark" : "light");
+  } catch {}
+  themeListeners.forEach((l) => l());
+}
+
 function ThemeToggle() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
-  }, []);
-
-  function toggle() {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    try {
-      localStorage.setItem("xenios-theme", next ? "dark" : "light");
-    } catch {}
-  }
+  const dark = useSyncExternalStore(
+    subscribeTheme,
+    getThemeSnapshot,
+    getThemeServerSnapshot
+  );
 
   return (
     <button
-      onClick={toggle}
-      aria-label='Toggle dark mode'
-      className={chip}>
+      onClick={() => setDarkMode(!dark)}
+      aria-label="Toggle dark mode"
+      className={chip}
+    >
       {dark ? <Sun size={17} /> : <Moon size={17} />}
     </button>
   );
@@ -41,15 +56,16 @@ function ThemeToggle() {
 function LocaleSwitcher() {
   const { locale, setLocale } = useLocale();
   return (
-    <div className='flex rounded-full border border-line/70 bg-paper/70 p-0.5 backdrop-blur'>
+    <div className="border-line/70 bg-paper/70 flex rounded-full border p-0.5 backdrop-blur">
       {LOCALES.map((l) => (
         <button
           key={l.code}
           onClick={() => setLocale(l.code)}
           className={cn(
             "rounded-full px-2.5 py-1 text-xs font-medium transition",
-            locale === l.code ? "bg-ink text-paper" : "text-muted",
-          )}>
+            locale === l.code ? "bg-ink text-paper" : "text-muted"
+          )}
+        >
           {l.label}
         </button>
       ))}
@@ -71,19 +87,17 @@ export function TopBar({
         "z-20 flex items-center justify-between px-4 py-3",
         overlay
           ? "absolute inset-x-0 top-0"
-          : "sticky top-0 border-b border-line/60 bg-paper/85 backdrop-blur",
-      )}>
+          : "border-line/60 bg-paper/85 sticky top-0 border-b backdrop-blur"
+      )}
+    >
       {backHref ? (
-        <Link
-          href={backHref}
-          aria-label={t(ui.back, locale)}
-          className={chip}>
+        <Link href={backHref} aria-label={t(ui.back, locale)} className={chip}>
           <ArrowLeft size={17} />
         </Link>
       ) : (
         <span />
       )}
-      <div className='flex items-center gap-2'>
+      <div className="flex items-center gap-2">
         <LocaleSwitcher />
         <ThemeToggle />
       </div>

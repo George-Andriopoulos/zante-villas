@@ -1,8 +1,39 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useSyncExternalStore,
+} from "react";
 
 import { LOCALES, type Locale } from "@/lib/i18n";
+
+const STORAGE_KEY = "xenios-locale";
+const listeners = new Set<() => void>();
+
+function readStored(): Locale | null {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved && LOCALES.some((l) => l.code === saved)
+      ? (saved as Locale)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function writeStored(locale: Locale) {
+  try {
+    localStorage.setItem(STORAGE_KEY, locale);
+  } catch {}
+  listeners.forEach((l) => l());
+}
 
 const LocaleCtx = createContext<{
   locale: Locale;
@@ -20,30 +51,18 @@ export function LocaleProvider({
   defaultLocale: Locale;
   children: React.ReactNode;
 }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("xenios-locale");
-      if (saved && LOCALES.some((l) => l.code === saved)) {
-        setLocaleState(saved as Locale);
-      }
-    } catch {}
-  }, []);
+  const locale = useSyncExternalStore(
+    subscribe,
+    () => readStored() ?? defaultLocale,
+    () => defaultLocale
+  );
 
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
 
-  function setLocale(l: Locale) {
-    setLocaleState(l);
-    try {
-      localStorage.setItem("xenios-locale", l);
-    } catch {}
-  }
-
   return (
-    <LocaleCtx.Provider value={{ locale, setLocale }}>
+    <LocaleCtx.Provider value={{ locale, setLocale: writeStored }}>
       {children}
     </LocaleCtx.Provider>
   );
