@@ -7,8 +7,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Hard rule carried from Zante-menu: NEVER CSS text-transform:uppercase on Greek.
-// toLocaleUpperCase("el-GR") correctly drops the tonos (ά → Α).
 export function upper(s: string, locale: Locale) {
   return locale === "el" ? s.toLocaleUpperCase("el-GR") : s.toUpperCase();
 }

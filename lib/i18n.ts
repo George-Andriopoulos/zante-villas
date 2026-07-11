@@ -1,12 +1,10 @@
 export type Locale = "en" | "el";
-// Add more later: extend this union + LOCALES + translate content. Nothing else changes.
 
 export const LOCALES: { code: Locale; label: string }[] = [
   { code: "en", label: "EN" },
   { code: "el", label: "ΕΛ" },
 ];
 
-// English is the required fallback for every string.
 export type L10n = { en: string } & Partial<Record<Locale, string>>;
 
 export function t(x: L10n | undefined, locale: Locale): string {
