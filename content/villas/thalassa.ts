@@ -8,12 +8,7 @@ export const thalassa: Villa = {
     en: "A quiet retreat above the Ionian, minutes from turtle beaches.",
     el: "Ένα ήσυχο καταφύγιο πάνω από το Ιόνιο, λίγα λεπτά από τις παραλίες της καρέτα.",
   },
-  heroImages: [
-    "/villas/thalassa/hero-1.jpg",
-    "/villas/thalassa/hero-2.jpg",
-    "/villas/thalassa/hero-3.jpg",
-    "/villas/thalassa/hero-4.jpg",
-  ],
+  heroImages: ["/villas/thalassa/hero-1.jpg"],
   defaultLocale: "en",
   location: {
     area: { en: "Vasilikos · Zakynthos", el: "Βασιλικός · Ζάκυνθος" },
@@ -22,7 +17,7 @@ export const thalassa: Villa = {
   },
   host: {
     name: "Michael",
-    photo: "/villas/thalassa/host.jpg",
+    photo: "/villas/thalassa/michael.jpg",
     note: {
       en: "Welcome to Villa Thalassa! In this guide you will find everything for a comfortable stay — from the Wi-Fi password to the beaches and tavernas we love ourselves. Message me on WhatsApp any time, for anything at all. Kalos irthate! — George",
       el: "Καλώς ήρθατε στη Villa Thalassa! Σε αυτόν τον οδηγό θα βρείτε ό,τι χρειάζεστε για μια άνετη διαμονή — από τον κωδικό Wi-Fi μέχρι τις παραλίες και τις ταβέρνες που αγαπάμε κι εμείς. Στείλτε μου μήνυμα στο WhatsApp οποιαδήποτε στιγμή, για οτιδήποτε. — Γιώργος",
