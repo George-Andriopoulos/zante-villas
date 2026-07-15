@@ -17,23 +17,23 @@ export const thalassa: Villa = {
   defaultLocale: "en",
   location: {
     area: { en: "Vasilikos · Zakynthos", el: "Βασιλικός · Ζάκυνθος" },
-    lat: 37.7212,
-    lon: 20.956,
+    lat: 37.710631,
+    lon: 20.988453,
   },
   host: {
-    name: "George",
+    name: "Michael",
     photo: "/villas/thalassa/host.jpg",
     note: {
       en: "Welcome to Villa Thalassa! In this guide you will find everything for a comfortable stay — from the Wi-Fi password to the beaches and tavernas we love ourselves. Message me on WhatsApp any time, for anything at all. Kalos irthate! — George",
       el: "Καλώς ήρθατε στη Villa Thalassa! Σε αυτόν τον οδηγό θα βρείτε ό,τι χρειάζεστε για μια άνετη διαμονή — από τον κωδικό Wi-Fi μέχρι τις παραλίες και τις ταβέρνες που αγαπάμε κι εμείς. Στείλτε μου μήνυμα στο WhatsApp οποιαδήποτε στιγμή, για οτιδήποτε. — Γιώργος",
     },
-    phone: "+306984534669",
-    whatsapp: "+306984534669",
-    email: "hello@example.com", // TODO
+    phone: "+306977616178",
+    whatsapp: "+306977616178",
+    email: "pixeldesignzakynthos@gmail.com", // TODO
   },
   social: {
-    instagram: "https://www.instagram.com/george.andriopoulos/",
-    facebook: "https://www.facebook.com/profile.php?id=100006718304879",
+    instagram: "https://www.instagram.com/mikeszante/",
+    facebook: "https://www.facebook.com/georgizas.michael?locale=el_GR",
   },
   ctas: [
     {
@@ -75,7 +75,7 @@ export const thalassa: Villa = {
             {
               label: { en: "Directions", el: "Οδηγίες" },
               value: "Open in Google Maps",
-              href: "https://www.google.com/maps/dir/?api=1&destination=37.7212,20.9560",
+              href: "https://www.google.com/maps/dir/?api=1&destination=37.710631,20.988453",
             },
           ],
         },
@@ -704,8 +704,11 @@ export const thalassa: Villa = {
           type: "contacts",
           items: [
             {
-              label: { en: "Your host — George", el: "Οικοδεσπότης — Γιώργος" },
-              value: "+306984534669",
+              label: {
+                en: "Your host — Michael",
+                el: "Οικοδεσπότης — Μιχάλης",
+              },
+              value: "+306977616178",
               kind: "whatsapp",
             },
             {
